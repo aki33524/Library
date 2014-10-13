@@ -1,32 +1,41 @@
-int _par[MAX_N];
-int _rank[MAX_N];
+#include <vector>
+using namespace std;
 
-void init(int n){
-    for(int i=0; i<n; i++){
-        _par[i] = i;
-        _rank[i] = 0;
-    }
-}
+class UnionFind{
+private:
+	vector<int> __root;
+	vector<int> __rank;
 
-int root(int x){
-    if(x == _par[x])
-        return x;
-    return _par[x] = root(_par[x]);
-}
+public:
+	UnionFind(int n){
+		__root.resize(n);
+		__rank.resize(n);
+		for(int i=0; i<n; i++){
+			__root[i] = i;
+			__rank[i] = 0;
+		}
+	}
 
-void unite(int x, int y){
-    x = root(x);
-    y = root(y);
+	int root(int x){
+		if(__root[x] == x)
+			return x;
+		return __root[x] = root(__root[x]);
+	}
 
-    if(_rank[x] < _rank[y]){
-        _par[x] = y;
-    }else{
-        _par[y] = x;
-        if(_rank[x] == _rank[y])
-            _rank[x]++;
-    }
-}
+	void unite(int x, int y){
+	    x = root(x);
+	    y = root(y);
 
-bool is_same_group(int x, int y){
-    return root(x) == root(y);
-}
+	    if(__rank[x] < __rank[y]){
+	        __root[x] = y;
+	    }else{
+	    	__root[y] = x;
+	        if(__rank[x] == __rank[y])
+	        	__rank[x]++;
+	    }
+	}
+
+	bool is_same_group(int x, int y){
+	    return root(x) == root(y);
+	}
+};

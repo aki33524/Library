@@ -4,15 +4,18 @@
 #include <queue>
 #include <numeric>
 #include <string>
-
-//ios::sync_with_stdio(false);
+#include <iostream>
+#include <string.h>
+#include <map>
 
 using namespace std;
 
-const int INF = (1<<30) - 1;
+//#include "union_find.cpp"
+//const int INF = (1<<30) - 1;
 
 
 int main(){
+	//ios::sync_with_stdio(false);
 
 	return 0;
 }
