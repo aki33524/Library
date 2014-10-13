@@ -1,7 +1,4 @@
-#include <vector>
-using namespace std;
-
-const int INF = (1<<30) - 1;
+#include "template.cpp"
 
 class FordFulkerson{
 private:

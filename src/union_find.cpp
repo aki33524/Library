@@ -1,5 +1,4 @@
-#include <vector>
-using namespace std;
+#include "template.cpp"
 
 class UnionFind{
 private:

@@ -10,8 +10,7 @@
 
 using namespace std;
 
-//#include "union_find.cpp"
-//const int INF = (1<<30) - 1;
+const int INF = (1<<30) - 1;
 
 
 int main(){
