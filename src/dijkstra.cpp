@@ -8,7 +8,7 @@ vector<int> dijkstra(vector<vector<Edge> >& G, int s){
     int N = G.size();
     vector<int> d(N, INF);
 
-    priority_queue<pair<int, int> > q;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
     d[s] = 0;
     q.push(make_pair(d[s], s));
 
