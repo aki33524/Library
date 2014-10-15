@@ -2,35 +2,35 @@
 
 class UnionFind{
 private:
-	vector<int> __root;
-	vector<int> __rank;
+	vector<int> _root;
+	vector<int> _rank;
 
 public:
 	UnionFind(int n){
-		__root.resize(n);
-		__rank.resize(n);
+		_root.resize(n);
+		_rank.resize(n);
 		for(int i=0; i<n; i++){
-			__root[i] = i;
-			__rank[i] = 0;
+			_root[i] = i;
+			_rank[i] = 0;
 		}
 	}
 
 	int root(int x){
-		if(__root[x] == x)
+		if(_root[x] == x)
 			return x;
-		return __root[x] = root(__root[x]);
+		return _root[x] = root(_root[x]);
 	}
 
 	void unite(int x, int y){
 	    x = root(x);
 	    y = root(y);
 
-	    if(__rank[x] < __rank[y]){
-	        __root[x] = y;
+	    if(_rank[x] < _rank[y]){
+	        _root[x] = y;
 	    }else{
-	    	__root[y] = x;
-	        if(__rank[x] == __rank[y])
-	        	__rank[x]++;
+	    	_root[y] = x;
+	        if(_rank[x] == _rank[y])
+	        	_rank[x]++;
 	    }
 	}
 
