@@ -26,5 +26,5 @@ bool has_negative_cycle(int n, vector<Edge> edges, int s){
 		if(!updated)
 			break;
 	}
-	return i == n-1;
+	return i == n;
 }
