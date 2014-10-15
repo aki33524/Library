@@ -1,8 +1,8 @@
 #include "template.cpp"
 
-typedef struct{
+struct Edge{
     int to, cost;
-} Edge;
+};
 
 vector<int> dijkstra(vector<vector<Edge> >& G, int s){
     int N = G.size();
