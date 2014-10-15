@@ -11,6 +11,7 @@ bool has_negative_cycle(int n, vector<Edge> edges, int s){
 	vector<int> d(n, INF);
 	//vector<int> par(n, -1); //parent
 
+	d[s] = 0;
 	int i;
 	for(i=0; i<n; i++){
 		for(int j=0; j<edges.size(); j++){
