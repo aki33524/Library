@@ -23,7 +23,7 @@ public:
 
 	TopologicalSort(vector<vector<int> >& _G) : G(_G), is_dag(false){}
 
-	vector<int> get_orderd_sequence(){
+	vector<int> get_ordered_sequence(){
 		vector<int> res;
 		colors.resize(G.size());
 		fill(colors.begin(), colors.end(), WHITE);
