@@ -21,9 +21,7 @@ private:
 public:
 	bool is_dag;
 
-	TopologicalSort(vector<vector<int> >& _G) : G(_G){
-		is_dag = false;
-	}
+	TopologicalSort(vector<vector<int> >& _G) : G(_G), is_dag(false){}
 
 	vector<int> get_orderd_sequence(){
 		vector<int> res;
