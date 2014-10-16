@@ -33,6 +33,9 @@ public:
 	}
 
 	vector<int> get_ordered_sequence(){
+		if(!is_dag){
+			throw "this graph is not DAG!";
+		}
 		return res;
 	}
 };
