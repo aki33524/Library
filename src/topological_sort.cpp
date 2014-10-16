@@ -20,7 +20,7 @@ private:
 public:
 	bool is_dag;
 
-	vector<int> topological_sort(vector<vector<int> >& G){
+	vector<int> get_orderd_sequence(vector<vector<int> >& G){
 		vector<int> res;
 		colors.resize(G.size());
 		fill(colors.begin(), colors.end(), WHITE);
