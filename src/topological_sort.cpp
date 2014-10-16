@@ -4,6 +4,7 @@ class TopologicalSort{
 private:
 	enum Color{WHITE, GRAY, BLACK};
 	vector<Color> colors;
+	vector<int> res;
 	vector<vector<int> > G;
 
 	void dfs(int u, vector<int>& res){
@@ -20,7 +21,6 @@ private:
 	}
 public:
 	bool is_dag;
-	vector<int> res;
 
 	TopologicalSort(vector<vector<int> >& _G) : G(_G){
 		colors.resize(G.size());
