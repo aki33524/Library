@@ -4,7 +4,7 @@ class TopologicalSort{
 private:
 	enum Color{WHITE, GRAY, BLACK};
 	vector<Color> colors;
-	vector<vector<int> >& G;
+	vector<vector<int> > G;
 
 	void dfs(int u, vector<int>& res){
 		colors[u] = GRAY;
