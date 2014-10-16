@@ -10,10 +10,12 @@ void dfs(vector<vector<int> >& G, int u, vector<int>& res, vector<bool>& used){
 	used[u] = true;
 }
 
-vector<int> topological_sort(vector<vector<int> >& G, int s){
+vector<int> topological_sort(vector<vector<int> >& G){
 	vector<int> res;
 	vector<bool> used(G.size(), false);
-	dfs(G, s, res, used);
+	for(int v = 0; v < G.size(); v++)
+		if(!used[v])
+			dfs(G, v, res, used);
 	reverse(res.begin(), res.end());
 	return res;
 }
