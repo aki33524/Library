@@ -15,9 +15,8 @@ vector<Edge> kruskal(int V, vector<Edge>& edges){
 	sort(edges.begin(), edges.end());
 	vector<Edge> res;
 	for(auto& edge: edges){
-		if(!union_find.is_same_group(edge.from, edge.to)){
+		if(union_find.unite(edge.from, edge.to)){
 			res.push_back(edge);
-			union_find.unite(edge.from, edge.to);
 		}
 	}
 	return res;

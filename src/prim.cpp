@@ -5,8 +5,8 @@ public:
 	int to, cost;
 	Edge(int _to, int _cost): to(_to), cost(_cost){};
 
-	bool operator < (const Edge& right) const{
-		return cost < right.cost;
+	bool operator > (const Edge& right) const{
+		return cost > right.cost;
 	}
 };
 
@@ -24,7 +24,7 @@ vector<Edge> prim(vector<vector<Edge>> G, int root){
 		res.push_back(edge);
 		visited[edge.to] = true;
 		for(int i=0; i<G[edge.to].size(); i++){
-			if(!visited[G[edge.to][i]])
+			if(!visited[G[edge.to][i].to])
 				queue.push(G[edge.to][i]);
 		}
 	}

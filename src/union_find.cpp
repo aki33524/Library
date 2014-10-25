@@ -22,9 +22,11 @@ public:
 	}
 
 	bool unite(int x, int y){
+		if(is_same_group(x, y))
+			return false;
+
 		x = root(x);
 		y = root(y);
-		if(x == y) return false;
 
 		if(_rank[x] < _rank[y]){
 			_root[x] = y;
