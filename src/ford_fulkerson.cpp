@@ -1,12 +1,14 @@
 #include "template.cpp"
 
+class Edge{
+public:
+	int to, cap, rev;
+	Edge(int _to, int _cap, int _rev): to(_to), cap(_cap), rev(_rev){};
+};
+
 class FordFulkerson{
 private:
-	typedef struct {
-		int to, cap, rev;
-	} Edge;
-
-	vector<vector<Edge> > G;
+	vector<vector<Edge>> G;
 	vector<bool> used;
 
 public:
@@ -16,8 +18,8 @@ public:
 	}
 
 	void add_edge(int from, int to, int cap){
-		G[from].push_back((Edge){to, cap, G[to].size()});
-		G[to].push_back((Edge){from, 0, G[from].size()-1});
+		G[from].push_back(Edge(to, cap, G[to].size()));
+		G[to].push_back(Edge(from, 0, G[from].size()-1));
 	}
 
 	int dfs(int v, int t, int f){
