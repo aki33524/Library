@@ -21,20 +21,22 @@ public:
 		return _root[x] = root(_root[x]);
 	}
 
-	void unite(int x, int y){
-	    x = root(x);
-	    y = root(y);
+	bool unite(int x, int y){
+		x = root(x);
+		y = root(y);
+		if(x == y) return false;
 
-	    if(_rank[x] < _rank[y]){
-	        _root[x] = y;
-	    }else{
-	    	_root[y] = x;
-	        if(_rank[x] == _rank[y])
-	        	_rank[x]++;
-	    }
+		if(_rank[x] < _rank[y]){
+			_root[x] = y;
+		}else{
+			_root[y] = x;
+			if(_rank[x] == _rank[y])
+				_rank[x]++;
+		}
+		return true;
 	}
 
 	bool is_same_group(int x, int y){
-	    return root(x) == root(y);
+		return root(x) == root(y);
 	}
 };
