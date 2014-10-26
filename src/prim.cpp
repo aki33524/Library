@@ -10,7 +10,7 @@ public:
 	}
 };
 
-vector<Edge> prim(vector<vector<Edge>> G, int root){
+vector<Edge> prim(vector<vector<Edge>>& G, int root){
 	int V = G.size();
 	vector<Edge> res;
 	vector<bool> visited(V);
@@ -29,4 +29,8 @@ vector<Edge> prim(vector<vector<Edge>> G, int root){
 		}
 	}
 	return res;
+}
+
+vector<Edge> prim(vector<vector<Edge>>& G){
+	return prim(G, 0);
 }
