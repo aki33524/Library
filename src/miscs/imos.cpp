@@ -1,4 +1,4 @@
-#include "template.cpp"
+#include "../template.cpp"
 
 class Imos{
 public:

@@ -8,7 +8,7 @@ public:
 
 class FordFulkerson{
 private:
-	vector<vector<Edge>> G;
+	vector<vector<Edge> > G;
 	vector<bool> used;
 
 public:
@@ -49,5 +49,6 @@ public:
 				return res;
 			res += f;
 		}
+		return res;
 	}
 };
