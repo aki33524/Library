@@ -17,6 +17,6 @@ const int INF = (1<<30) - 1;
 
 int main(){
 	//ios::sync_with_stdio(false);
-
+	//cin.tie(0);
 	return 0;
 }
