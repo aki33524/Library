@@ -7,7 +7,7 @@ private:
 
 public:
 	BIT(int n){
-		bit.resize(n);
+		bit.resize(n+1);
 	}
 
 	int sum(int i){
@@ -22,7 +22,7 @@ public:
 	void add(int i, int v){
 		while(i <= bit.size()){
 			bit[i] += v;
-			i += i&-1;
+			i += i&-i;
 		}
 	}
 };
