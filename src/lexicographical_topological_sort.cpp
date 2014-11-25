@@ -37,9 +37,10 @@ private:
 			if(colors[v] == WHITE)
 				vec.push_back(dfs(v));
 		}
-		vec.push_back(u);
+		vector<int> ret = merge(vec);
+		ret.push_back(u);
 		colors[u] = BLACK;
-		return vec;
+		return ret;
 	}
 public:
 	bool is_dag;
@@ -52,8 +53,8 @@ public:
 		for(int v = 0; v < G.size(); v++)
 			if(colors[v] == WHITE)
 				vec.push_back(dfs(v));
-		reverse(vec.begin(), vec.end());
-		res = vec;
+		res = merge(vec);
+		reverse(res.begin(), res.end());
 	}
 
 	vector<int> get_ordered_sequence(){
