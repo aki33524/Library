@@ -21,6 +21,8 @@ private:
 			for(int i=0; i<vec.size(); i++)
 				v.push_back(vec[i][indices[i]++]);
 			sort(v.begin(), v.end());
+
+			for()
 			ret += v;
 		}
 		return ret;
