@@ -10,6 +10,10 @@
 #include <set>
 #include <functional>
 #include <complex>
+#include <stack>
+#include <tuple>
+
+#define ll long long int
 
 using namespace std;
 
