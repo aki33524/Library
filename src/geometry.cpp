@@ -1,5 +1,4 @@
 #include "template.cpp"
-typedef complex<double> pt;
 
 //内積
 double dot(complex<double> l, complex<double> r){
@@ -15,7 +14,7 @@ double cross(complex<double> l, complex<double> r){
 
 //反時計回り
 bool ccw(complex<double> l, complex<double> r){
-    int a = cross(l, r);
+    double a = cross(l, r);
     if(a == 0)
     	//重なる場合は問題によって適切な設定を
         return false;
@@ -41,4 +40,10 @@ double disSP(complex<double> p, complex<double> s, complex<double> e){
 	if(dot(e-s, p-e)<=0)
 		return abs(p-e);
 	return disLP(p, s, e);
+}
+
+//中心c, 半径rの円が線分(s, e)と接触するか
+//線分が円に内包される場合は接触しないとする
+bool intCS(complex<double> c, double r, complex<double> s, complex<double> e){
+	return disSP(s, e, c)<=r && (r<=abs(c-s)||r<=abs(c-e));
 }
