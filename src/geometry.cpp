@@ -2,13 +2,13 @@
 
 //内積
 double dot(complex<double> l, complex<double> r){
-	return imag(conj(l)*r);
+	return real(conj(l)*r);
 	//return l.real()*r.real() + l.imag()*r.imag();
 }
 
 //外積
 double cross(complex<double> l, complex<double> r){
-	return real(conj(l)*r);
+	return imag(conj(l)*r);
    // return l.real()*r.imag() - l.imag()*r.real();
 }
 
@@ -37,7 +37,7 @@ double disLP(complex<double> p, complex<double> s, complex<double> e){
 double disSP(complex<double> p, complex<double> s, complex<double> e){
 	if(dot(e-s, p-s)<=0)
 		return abs(p-s);
-	if(dot(e-s, p-e)<=0)
+	if(dot(s-e, p-e)<=0)
 		return abs(p-e);
 	return disLP(p, s, e);
 }
