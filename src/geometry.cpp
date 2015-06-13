@@ -105,7 +105,7 @@ P crosspointLL(P a1, P a2, P b1, P b2) {
 	D d2 = cross(b2-b1, a2-a1);
 	if (EQ(d1, 0) && EQ(d2, 0)) return a1;	// same line
 	if (EQ(d2, 0)) throw "kouten ga nai";	 // 交点がない
-	return a1 + d1/d2 * (a2-a1);
+	return a1 + d1 / d2 * (a2-a1);
 }
 
 

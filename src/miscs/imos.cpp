@@ -3,8 +3,9 @@
 class Imos{
 public:
 	int H, W;
-	vector<vector<int> > d;
+	vector<vector<int>> d;
 public:
+	//1-indexed
 	Imos(vector<string>& field){
 		H = field.size();
 		W = field[0].size();
@@ -17,7 +18,7 @@ public:
 		}
 	}
 	int area(int h1, int w1, int h2, int w2){
-		//1-indexed, size of area s.t. [h1, h2) and [w1, w2)
+		//size of area s.t. [h1, h2) and [w1, w2)
 		return d[h2][w2] - d[h2][w1] - d[h1][w2] + d[h1][w1];
 	}
 };

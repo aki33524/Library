@@ -9,4 +9,4 @@ mm_popcnt_u32(uint32_t x){
 #	define mm_popcnt_u32 _mm_popcnt_u32
 #endif
 
-//-msse4.2 __builtin_popcount
+//-msse4.2 __builtin_popcount GCCの機能なのでICPCでは使えない？

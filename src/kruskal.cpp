@@ -3,7 +3,7 @@
 class Edge{
 public:
 	int from, to, cost;
-	Edge(int _from, int _to, int _cost) : from(_from), to(_to), cost(_cost){};
+	Edge(int from, int to, int cost) : from(from), to(to), cost(cost){};
 
 	bool operator < (const Edge& right)const{
 		return cost < right.cost;

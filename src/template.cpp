@@ -33,7 +33,8 @@ const D EPS = 1e-9;
 #define EQ(n,m) (abs((n)-(m)) < EPS)
 
 
-
+//g++ -std=c++0x -msse4.2 -O3
+//#include <bits/stdc++.h>
 int main(){
 	//ios::sync_with_stdio(false);
 	//cin.tie(0);

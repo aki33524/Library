@@ -25,14 +25,16 @@ public:
 	TopologicalSort(vector<vector<int> >& _G) : G(_G){
 		colors.resize(G.size());
 		fill(colors.begin(), colors.end(), WHITE);
+		is_dag = false;
+	}
+
+	vector<int> get_ordered_sequence(){
 		is_dag = true;
 		for(int v = 0; v < G.size(); v++)
 			if(colors[v] == WHITE)
 				dfs(v, res);
 		reverse(res.begin(), res.end());
-	}
 
-	vector<int> get_ordered_sequence(){
 		if(!is_dag){
 			throw "this graph is not DAG!";
 		}

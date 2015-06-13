@@ -1,7 +1,7 @@
 #include "template.cpp"
 
 
-int det(complex<double> l, complex<double> r){
+double det(complex<double> l, complex<double> r){
     return l.real()*r.imag() - l.imag()*r.real();
 }
 
@@ -13,7 +13,7 @@ bool cmp1(const complex<double>& l, const complex<double>& r){
 }
 
 bool cmp2(const complex<double>& l, const complex<double>& r){
-    int a = det(l, r);
+	double a = det(l, r);
     if(a == 0)
         return abs(l) < abs(r);
     else
