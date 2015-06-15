@@ -218,7 +218,7 @@ VP circlesPointsTangent(P a, P b, P l1, P l2) {
 		return cs;
 	}
 	D t = -qb/qa;
-	cs.push_back(							(a+b)*0.5 + m * (t + sqrt(max(qd, 0.0))/qa));
+	cs.push_back((a+b)*0.5 + m * (t + sqrt(max(qd, 0.0))/qa));
 	if (qd > EPS) cs.push_back((a+b)*0.5 + m * (t - sqrt(max(qd, 0.0))/qa));
 	return cs;
 }
@@ -354,7 +354,7 @@ pair<int, int> convexDiameter(const VP& ps) {
 			maxJ = j;
 		}
 		if (cross(ps[i]-ps[(i+1) % n], ps[(j+1) % n]-ps[j]) <= 0) j = (j+1) % n;
-		else																											i = (i+1) % n;
+		else i = (i+1) % n;
 	}
 	return make_pair(maxI, maxJ);
 }
@@ -414,7 +414,7 @@ Graph segmentArrangement(const vector<L>& segs, VP& ps) {
 		ps.push_back(segs[i].first);
 		ps.push_back(segs[i].second);
 		rep (j, i) {
-			if (isecSS(								 segs[i].first, segs[i].second, segs[j].first, segs[j].second))
+			if (isecSS(segs[i].first, segs[i].second, segs[j].first, segs[j].second))
 				ps.push_back(crosspointLL(segs[i].first, segs[i].second, segs[j].first, segs[j].second));
 		}
 	}
