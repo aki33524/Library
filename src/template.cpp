@@ -38,6 +38,6 @@ const D EPS = 1e-9;
 int main(){
 	//ios::sync_with_stdio(false);
 	//cin.tie(0);
-	//cout.precision(10);
+	//cout.precision(16);
 	return 0;
 }
