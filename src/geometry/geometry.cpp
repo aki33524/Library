@@ -134,6 +134,7 @@ VP crosspointLC(P a1, P a2, P c, D r) {
 }
 
 D distCC(P a, D ar, P b, D br) {
+	//完全に内包されているケースを考慮
 	D d = abs(a-b);
 	return GE(d, abs(ar-br)) ? max(d-ar-br, 0.0) : abs(ar-br) - d;
 }

@@ -40,5 +40,7 @@ int main(){
 	//ios::sync_with_stdio(false);
 	//cin.tie(0);
 	//cout.precision(16);
+	//cout.setf(ios::fixed);
+
 	return 0;
 }

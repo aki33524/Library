@@ -1,6 +1,7 @@
 #include "../template.cpp"
 
 ll gcd(ll a, ll b){
+	//__gcd(a, b)
     return b ? gcd(b, a%b) : a;
 }
 

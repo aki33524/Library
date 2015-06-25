@@ -6,7 +6,7 @@ public:
 	Edge(int to, int cost): to(to), cost(cost){};
 };
 
-vector<int> dijkstra(vector<vector<Edge> >& G, int s){
+vector<int> dijkstra(vector<vector<Edge>>& G, int s){
 	int N = G.size();
 	vector<int> d(N, INF);
 
