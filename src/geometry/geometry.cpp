@@ -1,4 +1,10 @@
 #include "template.cpp"
+typedef double D;      // 座標値の型。doubleかlong doubleを想定
+typedef complex<D> P;  // Point
+typedef pair<P, P> L;  // Line
+typedef vector<P> VP;
+#define X real()
+#define Y imag()
 
 // 内積　dot(a,b) = |a||b|cosθ
 D dot(P a, P b) {
@@ -169,11 +175,11 @@ VP tangentPoints(P a, D ar, P p) {
 vector<L> tangentLines(P a, D ar, P b, D br) {
 	vector<L> ls;
 	D d = abs(b-a);
-	rep (i,2) {
+	REP (i,2) {
 		D sin = (ar - (1-i*2)*br) / d;
 		if (!LE(sin*sin, 1)) break;
 		D cos = sqrt(max(1 - sin*sin, 0.0));
-		rep (j,2) {
+		REP (j,2) {
 			P n = (b-a) * P(sin, (1-j*2)*cos) / d;
 			ls.push_back(L(a + ar*n, b + (1-i*2)*br*n));
 			if (cos < EPS) break;	// 重複する接線を無視（重複していいならこの行不要）
@@ -228,11 +234,11 @@ VP circlesPointsTangent(P a, P b, P l1, P l2) {
 P minEnclosingCircle(const VP& ps) {
 	P c;
 	double move = 0.5;
-	rep(i,39) {	// 2^(-39-1) \approx 0.9e-12
-		rep(t,50) {
+	REP(i,39) {	// 2^(-39-1) \approx 0.9e-12
+		REP(t,50) {
 			D max = 0;
 			int k = 0;
-			rep (j, ps.size()) if (max < norm(ps[j]-c)) {
+			REP (j, ps.size()) if (max < norm(ps[j]-c)) {
 				max = norm(ps[j]-c);
 				k = j;
 			}
@@ -269,7 +275,7 @@ VP convexHull(VP ps) {	// 元の点集合がソートされていいならVP&に
 // 凸判定。縮退を認めないならccwの判定部分を != 1 とする
 bool isCcwConvex(const VP& ps) {
 	int n = ps.size();
-	rep (i, n) if (ccw(ps[i], ps[(i+1) % n], ps[(i+2) % n]) == -1) return false;
+	REP (i, n) if (ccw(ps[i], ps[(i+1) % n], ps[(i+2) % n]) == -1) return false;
 	return true;
 }
 
@@ -278,7 +284,7 @@ bool isCcwConvex(const VP& ps) {
 int inConvex(P p, const VP& ps) {
 	int n = ps.size();
 	int dir = ccw(ps[0], ps[1], p);
-	rep (i, n) {
+	REP (i, n) {
 		int ccwc = ccw(ps[i], ps[(i + 1) % n], p);
 		if (!ccwc) return 2;	// 線分上に存在
 		if (ccwc != dir) return 0;
@@ -318,7 +324,7 @@ int inCcwConvex(const VP& ps, P p) {
 int inPolygon(const VP& ps, P p) {
 	int n = ps.size();
 	bool in = false;
-	rep (i, n) {
+	REP (i, n) {
 		P a = ps[i] - p;
 		P b = ps[(i + 1) % n] - p;
 		if (EQ(cross(a,b), 0) && LE(dot(a,b), 0)) return 2;
@@ -332,7 +338,7 @@ int inPolygon(const VP& ps, P p) {
 VP convexCut(const VP& ps, P a1, P a2) {
 	int n = ps.size();
 	VP ret;
-	rep(i,n) {
+	REP(i,n) {
 		int ccwc = ccw(a1, a2, ps[i]);
 		if (ccwc != -1) ret.push_back(ps[i]);
 		int ccwn = ccw(a1, a2, ps[(i + 1) % n]);
@@ -348,7 +354,7 @@ pair<int, int> convexDiameter(const VP& ps) {
 	int j = max_element(ps.begin(), ps.end()) - ps.begin();
 	int maxI, maxJ;
 	D maxD = 0;
-	rep(_, 2*n) {
+	REP(_, 2*n) {
 		if (maxD < norm(ps[i]-ps[j])) {
 			maxD = norm(ps[i]-ps[j]);
 			maxI = i;
@@ -363,7 +369,7 @@ pair<int, int> convexDiameter(const VP& ps) {
 // 多角形の符号付面積
 D area(const VP& ps) {
 	D a = 0;
-	rep (i, ps.size()) a += cross(ps[i], ps[(i+1) % ps.size()]);
+	REP (i, ps.size()) a += cross(ps[i], ps[(i+1) % ps.size()]);
 	return a / 2;
 }
 
@@ -372,7 +378,7 @@ P centroid(const VP& ps) {
 	int n = ps.size();
 	D aSum = 0;
 	P c;
-	rep (i, n) {
+	REP (i, n) {
 		D a = cross(ps[i], ps[(i+1) % n]);
 		aSum += a;
 		c += (ps[i] + ps[(i+1) % n]) * a;
@@ -383,7 +389,7 @@ P centroid(const VP& ps) {
 // ボロノイ領域
 VP voronoiCell(P p, const VP& ps, const VP& outer) {
 	VP cl = outer;
-	rep (i, ps.size()) {
+	REP (i, ps.size()) {
 		if (EQ(norm(ps[i]-p), 0)) continue;
 		P h = (p+ps[i])*0.5;
 		cl = convexCut(cl, h, h + (ps[i]-h)*P(0,1) );
@@ -411,10 +417,10 @@ struct Graph {
 // 線分アレンジメント（線分の位置関係からグラフを作成）
 Graph segmentArrangement(const vector<L>& segs, VP& ps) {
 	int n = segs.size();
-	rep (i, n) {
+	REP (i, n) {
 		ps.push_back(segs[i].first);
 		ps.push_back(segs[i].second);
-		rep (j, i) {
+		REP (j, i) {
 			if (isecSS(segs[i].first, segs[i].second, segs[j].first, segs[j].second))
 				ps.push_back(crosspointLL(segs[i].first, segs[i].second, segs[j].first, segs[j].second));
 		}
@@ -425,14 +431,14 @@ Graph segmentArrangement(const vector<L>& segs, VP& ps) {
 	int m = ps.size();
 	Graph gr(m);
 	vector<pair<D, int> > list;
-	rep (i, n) {
+	REP (i, n) {
 		list.clear();
-		rep (j, m) {
+		REP (j, m) {
 			if (isecSP(segs[i].first, segs[i].second, ps[j]))
 				list.push_back(make_pair(norm(segs[i].first-ps[j]), j));
 		}
 		sort(list.begin(), list.end());
-		rep (j, list.size() - 1) {
+		REP (j, list.size() - 1) {
 			int a = list[j	].second;
 			int b = list[j+1].second;
 			gr.addEdge(Edge(a, b, abs(ps[a]-ps[b])));
@@ -445,14 +451,14 @@ Graph segmentArrangement(const vector<L>& segs, VP& ps) {
 Graph visibilityGraph(const VP& ps, const vector<VP>& objs) {
 	int n = ps.size();
 	Graph gr(n);
-	rep (i,n) rep (j,i) {
+	REP (i,n) REP (j,i) {
 		P a = ps[i], b = ps[j];
-		if (!EQ(norm(a-b), 0)) rep (k, objs.size()) {
+		if (!EQ(norm(a-b), 0)) REP (k, objs.size()) {
 			const VP& obj = objs[k];
 			int inStA = inConvex(a, obj);
 			int inStB = inConvex(b, obj);
 			if ((inStA ^ inStB) % 2 || inStA * inStB != 1 && inConvex((a+b)*0.5, obj) == 1) goto skip;
-			rep (l, obj.size()) {
+			REP (l, obj.size()) {
 				P cur = obj[l];
 				P next = obj[(l + 1) % obj.size()];
 				if (isecSS(a, b, cur, next) && !isecSP(cur, next, a) && !isecSP(cur, next, b)) goto skip;
@@ -470,9 +476,9 @@ Graph visibilityGraph(const VP& ps, const vector<VP>& objs) {
 // 重複する線分を併合する
 vector<L> mergeSegments(vector<L> segs) {
 	int n = segs.size();
-	rep (i,n) if (segs[i].second < segs[i].first) swap(segs[i].second, segs[i].first);
+	REP (i,n) if (segs[i].second < segs[i].first) swap(segs[i].second, segs[i].first);
 
-	rep (i,n) rep (j,i) {
+	REP (i,n) REP (j,i) {
 		L &l1 = segs[i], &l2 = segs[j];
 		if (EQ(cross(l1.second-l1.first, l2.second-l2.first), 0)
 				&& isecLP(l1.first, l1.second, l2.first)

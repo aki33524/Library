@@ -14,24 +14,21 @@
 #include <tuple>
 #include <array>
 using namespace std;
-#define rep(i,n) for (int i=0; i < (n); i++)
 
-
-typedef long long int ll;
-typedef double D;      // 座標値の型。doubleかlong doubleを想定
-typedef complex<D> P;  // Point
-typedef pair<P, P> L;  // Line
-typedef vector<P> VP;
-
-
-const int INF = (1<<30) - 1;
-const D EPS = 1e-9;
-
-#define X real()
-#define Y imag()
+#define FOR(i,a,b) for (int i=(a);i<(b);i++)
+#define RFOR(i,a,b) for (int i=(b)-1;i>=(a);i--)
+#define REP(i,n) for (int i=0;i<(n);i++)
+#define RREP(i,n) for (int i=(n)-1;i>=0;i--)
+#define ALL(u) begin(u),end(u)
+#define PB push_back
 #define LE(n,m) ((n) < (m) + EPS)
 #define GE(n,m) ((n) + EPS > (m))
 #define EQ(n,m) (abs((n)-(m)) < EPS)
+
+typedef long long int ll;
+const int INF = (1<<30) - 1;
+const double EPS = 1e-9;
+const int MOD = 1000000007;
 
 
 //g++ -std=c++0x -msse4.2 -O3
