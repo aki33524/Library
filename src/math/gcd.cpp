@@ -17,6 +17,7 @@ tuple<ll, ll> extgcd(ll a, ll b){
 }
 
 //mod mにおけるaの逆元を求める
+//拡張ユークリッド互除法を用いる方法
 ll mod_inverse(int a, int m){
 	if(gcd(a, m) != 1)
 		return -1;
@@ -24,3 +25,7 @@ ll mod_inverse(int a, int m){
 	tie(x, y) = extgcd(a, m);
 	return (m + x%m) %m;
 }
+
+//mod mにおけるaの逆元を求める
+//オイラーの公式を用いる方法
+

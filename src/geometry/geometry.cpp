@@ -273,6 +273,7 @@ VP convexHull(VP ps) {	// 元の点集合がソートされていいならVP&に
 }
 
 // 凸判定。縮退を認めないならccwの判定部分を != 1 とする
+// CCWで考えている 逆周りの時は注意
 bool isCcwConvex(const VP& ps) {
 	int n = ps.size();
 	REP (i, n) if (ccw(ps[i], ps[(i+1) % n], ps[(i+2) % n]) == -1) return false;
@@ -294,6 +295,7 @@ int inConvex(P p, const VP& ps) {
 
 // 凸多角形の内部判定　O(logn)
 // 点が領域内部なら1、境界上なら2、外部なら0を返す
+// 重心モドキからみてどこに点があるかの範囲を狭めていく
 int inCcwConvex(const VP& ps, P p) {
 	int n = ps.size();
 	P g = (ps[0] + ps[n / 3] + ps[n*2 / 3]) / 3.0;
@@ -321,6 +323,7 @@ int inCcwConvex(const VP& ps, P p) {
 
 // 多角形の内部判定
 // 点が領域内部なら1、境界上なら2、外部なら0を返す
+// p + (1, 0)*vとなる半直線を引くことを考えている
 int inPolygon(const VP& ps, P p) {
 	int n = ps.size();
 	bool in = false;
@@ -329,12 +332,14 @@ int inPolygon(const VP& ps, P p) {
 		P b = ps[(i + 1) % n] - p;
 		if (EQ(cross(a,b), 0) && LE(dot(a,b), 0)) return 2;
 		if (a.Y > b.Y) swap(a,b);
+		// a.Y*b.Y < EPS && b.Y > EPSって必要？
 		if ((a.Y*b.Y < 0 || (a.Y*b.Y < EPS && b.Y > EPS)) && LE(cross(a, b), 0)) in = !in;
 	}
 	return in;
 }
 
 // 凸多角形クリッピング
+// 2分探索 && listでO(log N)くらいに出来そうでは？
 VP convexCut(const VP& ps, P a1, P a2) {
 	int n = ps.size();
 	VP ret;
@@ -367,6 +372,7 @@ pair<int, int> convexDiameter(const VP& ps) {
 }
 
 // 多角形の符号付面積
+// ベクトル解析的な考え
 D area(const VP& ps) {
 	D a = 0;
 	REP (i, ps.size()) a += cross(ps[i], ps[(i+1) % ps.size()]);
@@ -396,6 +402,11 @@ VP voronoiCell(P p, const VP& ps, const VP& outer) {
 	}
 	return cl;
 }
+
+// 共通する凸多角形
+// 直感的にはクリッピングを繰り返せばよいがO(NM)
+// maehara氏によればO(N + M)が存在する
+// http://www.prefield.com/algorithm/geometry/convex_intersect.html
 
 /* 幾何グラフ */
 
