@@ -17,12 +17,6 @@
 #include <cassert>
 using namespace std;
 
-#define FOR(i,a,b) for (int i=(a);i<(b);i++)
-#define RFOR(i,a,b) for (int i=(b)-1;i>=(a);i--)
-#define REP(i,n) for (int i=0;i<(n);i++)
-#define RREP(i,n) for (int i=(n)-1;i>=0;i--)
-#define ALL(u) begin(u),end(u)
-#define PB push_back
 #define LE(n,m) ((n) < (m) + EPS * (abs(n) + abs(m)))
 #define GE(n,m) ((n) + EPS * (abs(n) + abs(m)) > (m))
 #define LT(n,m) ((n) + EPS * (abs(n) + abs(m)) < (m))

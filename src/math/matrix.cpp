@@ -8,7 +8,7 @@ mat mul(mat &A, mat &B){
 	for(int i=0; i<A.size(); i++){
 		for(int k=0; k<B.size(); k++){
 			for(int j=0; j<B[0].size(); j++){
-				C[i][j] = (C[i][j] + A[i][k] * B[k][j]);
+				C[i][j] += A[i][k] * B[k][j];
 			}
 		}
 	}
