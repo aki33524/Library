@@ -42,3 +42,20 @@ public:
 		return root(x) == root(y);
 	}
 };
+
+class UnionFind {
+    vector<int> par;
+    int cnt;
+public:
+    UnionFind(int size_) : par(size_, -1), cnt(size_) { }
+    void unite(int x, int y){
+        if ((x = find(x)) != (y = find(y))) {
+            if (par[y] < par[x]) swap(x, y);
+            par[x] += par[y]; par[y] = x; cnt--;
+        }
+    }
+    bool same(int x, int y){ return find(x) == find(y); }
+    int find(int x){ return par[x] < 0 ? x : par[x] = find(par[x]); }
+    int size(int x){ return -par[find(x)]; }
+    int size(){ return cnt; }
+};

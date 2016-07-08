@@ -25,7 +25,7 @@ void sieve(int n){
 int get_powers(int n, int p){
     int res = 0;
     for(ll power= p ; power<=n ; power*=p)
-        res += n/power;
+    	res += n/power;
     return res;
 }
 
